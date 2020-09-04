@@ -32,7 +32,7 @@ public class resultado extends AppCompatActivity {
         calcular = findViewById(R.id.calcular);
         nombrecito = findViewById(R.id.nombrecito);
         notas = findViewById(R.id.notas);
-        //nombrecito.setText(getIntent().getExtras().getString("user"));
+        padreResultado = findViewById(R.id.padreResultado);
         pro1 = Float.parseFloat(getIntent().getExtras().getString("pro1"));
         pro2 = Float.parseFloat(getIntent().getExtras().getString("pro2"));
         qui = Float.parseFloat(getIntent().getExtras().getString("qui"));
@@ -63,4 +63,19 @@ public class resultado extends AppCompatActivity {
         notas.setText("" +suma);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("fondos", MODE_PRIVATE);
+        String color = preferences.getString("color", "noHallo");
+        if (color.equals("black")){
+            padreResultado.setBackgroundColor(Color.rgb(0,0,0));
+        }
+        if(color.equals("white")){
+            padreResultado.setBackgroundColor(Color.rgb(255,255,255));
+        }
+        if(color.equals("blue")){
+            padreResultado.setBackgroundColor(Color.rgb(0,0,255));
+        }
+    }
 }
